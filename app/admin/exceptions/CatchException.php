@@ -11,7 +11,7 @@ abstract class CatchException extends BusinessException
     {
         // json请求返回json数据
         if ($request->expectsJson()) {
-            return json(['code' => $this->getCode() ?: 500, 'message' => $this->getMessage()]);
+            return json(['code' => $this->code ?: 500, 'message' => $this->getMessage()]);
         }
         // 非json请求则返回一个页面
         return new Response(200, [], $this->getMessage());

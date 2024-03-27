@@ -23,7 +23,7 @@ class Roles extends CatchController
         );
     }
 
-    public function save()
+    public function store()
     {
         $data = $this->request->all();
         if (!isset($data['data_range'])) {
@@ -38,11 +38,12 @@ class Roles extends CatchController
         return $this->success($this->model->storeBy($data));
     }
 
-    public function read($id)
+    public function show($id)
     {
+        /* @var RolesModel $role */
         $role = $this->model->firstBy($id);
 
-        if ($this->request->has('from') && $this->request->get('from') == 'parent_role') {
+        if ($this->request->get('from') == 'parent_role') {
             $role->setAttr('permissions', $role->permissions()->select()->toTree());
         } else {
             $role->setAttr('permissions', $role->permissions()->select()->column('id'));

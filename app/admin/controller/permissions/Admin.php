@@ -34,7 +34,7 @@ class Admin extends CatchController
         );
     }
 
-    public function read($id)
+    public function show($id)
     {
         $admin = $this->model->firstBy($id);
 

@@ -1,5 +1,5 @@
-**## 介绍
-这是 Webman 项目仓库，目前正在开发中...
+## 介绍
+这是 Webman CatchAdmin 仓库
 
 
 ## 使用
@@ -65,7 +65,7 @@ php webman catch:install
 ## 感谢🙏
 > 排名不分先后
 
-- [ThinkPHP](https://thinkphp.cn)
+- [Webman](https://www.workerman.net/webman)
 - [Vue](https://cn.vuejs.org/)
 - [ElementPlus](https://element-plus.org)
 - [JetBrains](https://www.jetbrains.com/)

@@ -8,6 +8,7 @@ use Webman\Route;
 use app\admin\controller\permissions\Admin;
 use app\admin\controller\common\Options;
 use app\admin\controller\common\Upload;
+use app\admin\controller\Generate;
 
 Route::resource('users', Admin::class);
 Route::put('/users/enable/{id}', [Admin::class , 'enable']);
@@ -28,3 +29,5 @@ Route::put('/permissions/permissions/enable/{id}', [Permissions::Class, 'enable'
 Route::get('/options/{option}', [Options::class , 'get']);
 Route::post('/upload/image', [Upload::class , 'image']);
 Route::post('/upload/file', [Upload::class , 'file']);
+
+Route::post('/generate', [Generate::class, 'index']);

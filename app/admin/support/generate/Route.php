@@ -31,19 +31,19 @@ class Route extends FileGenerator
         array_unshift($stmts, new Node\Stmt\Use_([new Node\UseItem(new Node\Name($this->controllerNamespace))]));
 
         $stmts[] = new Node\Stmt\Expression(
-            new Node\Expr\MethodCall(
+            //new Node\Expr\MethodCall(
                 new Node\Expr\StaticCall(
                     new Node\Name('Route'),
                     new Node\Identifier('resource'),
                     [
-                        new Node\Arg(new Node\Scalar\String_(lcfirst($this->controller))),
+                        new Node\Arg(new Node\Scalar\String_($this->getRouteApi())),
                         new Node\Arg(new Node\Expr\ClassConstFetch(
                             new Node\Name($this->controller),
                             new Node\Identifier('Class')
                         ))
                     ]
-                ),
-
+                )
+/**
                 new Node\Identifier('except'),
                 [
                     new Node\Arg(
@@ -58,13 +58,13 @@ class Route extends FileGenerator
                             ]
                         )
                     )
-                ]
-            )
+                ]**/
+            //)
         );
 
         $prettyPrinter = new PrettyPrinter\Standard;
 
-        file_put_contents(app_path('admin' . DIRECTORY_SEPARATOR . 'route')  . 'auth.php', $prettyPrinter->prettyPrintFile($stmts));
+        file_put_contents(app_path('admin' . DIRECTORY_SEPARATOR . 'route') . DIRECTORY_SEPARATOR  . 'auth.php', $prettyPrinter->prettyPrintFile($stmts));
 
         return true;
     }
@@ -74,7 +74,7 @@ class Route extends FileGenerator
         $parser = (new ParserFactory())->createForNewestSupportedVersion();
 
         return $parser->parse(file_get_contents(
-            app_path('admin' . DIRECTORY_SEPARATOR . 'route')  . 'auth.php'
+            app_path('admin' . DIRECTORY_SEPARATOR . 'route')  . DIRECTORY_SEPARATOR . 'auth.php'
         ));
     }
 
@@ -86,5 +86,19 @@ class Route extends FileGenerator
         $this->controller = end($controller);
 
         return $this;
+    }
+
+    public function getRouteApi(): string
+    {
+        $controller = explode('\\', $this->controllerNamespace);
+        $last = end($controller);
+
+        $preLast = end($controller);
+
+        if (strtolower($preLast) == 'controller') {
+            return '/' . lcfirst($last);
+        }
+
+        return '/' . lcfirst($preLast) . '/' . lcfirst($last);
     }
 }

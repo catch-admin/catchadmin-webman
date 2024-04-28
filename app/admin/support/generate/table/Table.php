@@ -213,14 +213,14 @@ class Table
 
         if (isset($config['deploy'])) {
             $dbConfig = [
-                'adapter' => $config['type'],
-                'host' => $config['hostname'],
-                'name' => $config['database'],
-                'user' => $config['username'],
-                'pass' => $config['password'],
-                'port' => $config['hostport'],
-                'charset' => $config['charset'],
-                'table_prefix' => $config['prefix'],
+                'adapter' => $config['deploy']['type'],
+                'host' => $config['deploy']['hostname'],
+                'name' => $config['deploy']['database'],
+                'user' => $config['deploy']['username'],
+                'pass' => $config['deploy']['password'],
+                'port' => $config['deploy']['hostport'],
+                'charset' => $config['deploy']['charset'],
+                'table_prefix' => $config['deploy']['prefix'],
             ];
         } else {
             $dbConfig = [

@@ -15,10 +15,6 @@ class Schema extends FileGenerator
         parent::__construct('Schema');
     }
 
-    /**
-     * @return mixed
-     * @throws FailedException
-     */
     public function generate()
     {
         // TODO: Implement generate() method.
@@ -39,7 +35,6 @@ class Schema extends FileGenerator
      * 创建表
      *
      * @return void
-     * @throws FailedException
      */
     protected function createTable(): void
     {
@@ -62,7 +57,6 @@ class Schema extends FileGenerator
      * 创建 columns
      *
      * @return void
-     * @throws FailedException
      */
     protected function createTableColumns(): void
     {

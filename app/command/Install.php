@@ -114,7 +114,7 @@ class Install extends Command
             $charset = $this->ask('👉设置数据库编码集, 默认 (utf8mb4):', 'utf8mb4');
             $database = '';
             while (!$database) {
-                $database = $this->ask( '👉 p设置数据库名称: ');
+                $database = $this->ask( '👉 设置数据库名称: ');
                 if ($database) {
                     break;
                 }
